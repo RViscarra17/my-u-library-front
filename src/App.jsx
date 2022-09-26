@@ -5,14 +5,15 @@ import Router from "./components/Router";
 import history from "./utils/history";
 import { getUser } from "./services/authService";
 import AuthContext from "./context/AuthContext";
+import BookCreateComponente from "./pages/book/BookCreate";
 import BookDetailComponent from "./pages/book/bookDetail";
 import BookIndexComponent from "./pages/book/bookIndex";
+import CheckoutComponent from "./pages/checkout/Checkout";
 import HomeComponent from './pages/home/home';
 import LoginComponent from "./pages/auth/login";
 
 import 'antd/dist/antd.css';
 import './App.css';
-import CheckoutComponent from "./pages/checkout/Checkout";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -54,6 +55,11 @@ function App() {
                 element={<BookDetailComponent />}
               />
               <Route path="/checkouts" exact element={<CheckoutComponent />} />
+              <Route
+                path="/book/create"
+                exact
+                element={<BookCreateComponente />}
+              />
             </Route>
             <Route path="/login" element={<LoginComponent />} exact />
           </Routes>
