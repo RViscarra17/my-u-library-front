@@ -16,6 +16,7 @@ import 'antd/dist/antd.css';
 import './App.css';
 import UserIndexComponent from "./pages/user/UserIndex";
 import UserCreateComponent from "./pages/user/UserCreate";
+import NotFoundPage from "./pages/NotFound";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -70,6 +71,7 @@ function App() {
               />
             </Route>
             <Route path="/login" element={<LoginComponent />} exact />
+            <Route path="*" element={<NotFoundPage />} /> 
           </Routes>
         </Router>
 
