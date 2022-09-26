@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import LoginComponent from "./pages/auth/login";
-import 'antd/dist/antd.css';
-import './App.css';
-import Router from "./components/Router";
 import { Routes, Route } from "react-router-dom";
+import Router from "./components/Router";
 import history from "./utils/history";
-import HomeComponent from './pages/home/home';
 import { getUser } from "./services/authService";
 import AuthContext from "./context/AuthContext";
+import BookIndexComponent from "./pages/book/bookIndex";
+import HomeComponent from './pages/home/home';
+import LoginComponent from "./pages/auth/login";
 
+import 'antd/dist/antd.css';
+import './App.css';
 
 function App() {
   const token = localStorage.getItem("token");
@@ -31,7 +32,9 @@ function App() {
       >
         <Router history={history}>
           <Routes>
-            <Route path="/" element={<HomeComponent />} />
+          <Route element={<HomeComponent />}>
+              <Route path="/" exact element={<BookIndexComponent />} />
+            </Route>
             <Route path="/login" element={<LoginComponent />} exact />
           </Routes>
         </Router>
