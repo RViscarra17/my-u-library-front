@@ -14,6 +14,7 @@ import LoginComponent from "./pages/auth/login";
 
 import 'antd/dist/antd.css';
 import './App.css';
+import UserIndexComponent from "./pages/user/UserIndex";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -60,6 +61,7 @@ function App() {
                 exact
                 element={<BookCreateComponente />}
               />
+              <Route path="/users" exact element={<UserIndexComponent />} />
             </Route>
             <Route path="/login" element={<LoginComponent />} exact />
           </Routes>
