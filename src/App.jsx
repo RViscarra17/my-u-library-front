@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { message } from "antd";
 import Router from "./components/Router";
 import history from "./utils/history";
 import { getUser } from "./services/authService";
 import AuthContext from "./context/AuthContext";
+import BookDetailComponent from "./pages/book/bookDetail";
 import BookIndexComponent from "./pages/book/bookIndex";
 import HomeComponent from './pages/home/home';
 import LoginComponent from "./pages/auth/login";
@@ -15,6 +17,7 @@ function App() {
   const token = localStorage.getItem("token");
   const [loggedIn, setLoggedIn] = useState(!!token);
   const [user, setUser] = useState({});
+  const [notification, setNotification] = useState();
 
   useEffect(() => {
     async function fetchUser() {
@@ -25,15 +28,30 @@ function App() {
     fetchUser();
   }, [loggedIn]);
 
+  useEffect(() => {
+    if (notification?.type) {
+      const messageNotification = {
+        success: (msg) => message.success(msg),
+        error: (msg) => message.error(msg),
+      };
+      messageNotification[notification.type](notification.msg);
+    }
+  }, [notification]);
+
   return (
     <div className="App">
       <AuthContext.Provider
-        value={{ loggedIn, setLoggedIn, user }}
+        value={{ loggedIn, setLoggedIn, user, setNotification }}
       >
         <Router history={history}>
           <Routes>
           <Route element={<HomeComponent />}>
               <Route path="/" exact element={<BookIndexComponent />} />
+              <Route
+                path="/book/:book_id"
+                exact
+                element={<BookDetailComponent />}
+              />
             </Route>
             <Route path="/login" element={<LoginComponent />} exact />
           </Routes>

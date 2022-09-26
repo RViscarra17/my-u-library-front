@@ -13,11 +13,10 @@ const getBook = async (book_id) => {
 };
 
 const checkoutBook = async (bookId) => {
-  const { data: book } = await axios.post("/checkouts", {
+  const { data } = await axios.post("/checkouts", {
     book_id: bookId,
   });
-
-  return book;
+  return data;
 };
 
 const getBookGenre = async () => {

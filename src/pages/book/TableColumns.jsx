@@ -1,4 +1,5 @@
 import { Space } from "antd";
+import { Link } from "react-router-dom";
 
 const columns = [
   {
@@ -22,7 +23,7 @@ const columns = [
     key: "action",
     render: (_, record) => (
       <Space size="middle">
-        <p>Show details</p>
+        <Link to={`book/${record.key}`}>Show details</Link>
       </Space>
     ),
   },
