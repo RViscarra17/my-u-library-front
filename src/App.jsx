@@ -12,6 +12,7 @@ import LoginComponent from "./pages/auth/login";
 
 import 'antd/dist/antd.css';
 import './App.css';
+import CheckoutComponent from "./pages/checkout/Checkout";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -52,6 +53,7 @@ function App() {
                 exact
                 element={<BookDetailComponent />}
               />
+              <Route path="/checkouts" exact element={<CheckoutComponent />} />
             </Route>
             <Route path="/login" element={<LoginComponent />} exact />
           </Routes>
